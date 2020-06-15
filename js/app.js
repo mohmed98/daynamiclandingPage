@@ -4,19 +4,8 @@
  */
 const pageSections = document.querySelectorAll("section");
 const navFregment = document.createDocumentFragment();
-/**
- * End Global Variables
- * Start Helper Functions
- *
- */
 
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
-
-// build the nav
+// dyanimic navbar starts when docmuments is loaded
 document.addEventListener("DOMContentLoaded", function () {
   for (let i = 0; i < pageSections.length; i++) {
     const listItem = document.createElement("li");
@@ -36,6 +25,7 @@ window.addEventListener("scroll", function (event) {
   for (let i = 0; i < pageSections.length; i++) {
     for (let i = 0; i < pageSections.length; i++) {
       if (
+        // selecting the paragraph elememnt inside the section to be clear when scrolling
         pageSections[i].querySelector("p").getBoundingClientRect().top > 0 &&
         pageSections[i].querySelector("p").getBoundingClientRect().top < 450
       ) {
@@ -44,27 +34,16 @@ window.addEventListener("scroll", function (event) {
         pageSections[i].classList.remove("your-active-class");
       }
     }
-    console.log(pageSections[i].querySelector("p").getBoundingClientRect().top);
   }
 });
 
 // Scroll to anchor ID using scrollTO event
-document.getElementById("navbar__list").addEventListener("click", function (e) {
-  e.preventDefault();
-
-  document.querySelector(e.target.getAttribute("href")).scrollIntoView({
-    behavior: "smooth",
+document
+  .getElementById("navbar__list")
+  .addEventListener("click", function (eve) {
+    eve.preventDefault();
+    // using event delegation here to inhance the performance
+    document.querySelector(eve.target.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
   });
-});
-
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
